@@ -1,0 +1,42 @@
+{
+  "entities": {
+    "transaction": {
+      "title": "Transaction",
+      "description": "Records of wallet operations (bridge, swap, send)",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Wallet address of the owner" },
+        "type": { "type": "string", "enum": ["send", "bridge", "swap"] },
+        "status": { "type": "string", "enum": ["completed", "pending", "failed"] },
+        "fromChain": { "type": "string" },
+        "toChain": { "type": "string" },
+        "amount": { "type": "string" },
+        "token": { "type": "string" },
+        "hash": { "type": "string" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["userId", "type", "status", "amount", "token", "timestamp"]
+    },
+    "userProfile": {
+      "title": "User Profile",
+      "description": "User-specific settings and aggregate data",
+      "type": "object",
+      "properties": {
+        "address": { "type": "string" },
+        "lastActive": { "type": "number" },
+        "preferredChain": { "type": "string" }
+      },
+      "required": ["address"]
+    }
+  },
+  "firestore": {
+    "users/{userId}/transactions/{txId}": {
+      "schema": "transaction",
+      "description": "Private transaction history per user"
+    },
+    "users/{userId}": {
+      "schema": "userProfile",
+      "description": "User profile document"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "ArcFlow",
+  "description": "A multichain USDC treasury dashboard powered by Arc Network. Unified balances, bridging, and swaps with a world-class interface.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
